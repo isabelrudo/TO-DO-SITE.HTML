@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+  <meta charset="UTF-8">
+  <title>To-Do List</title>
+  <link rel="stylesheet" href="./STYLE.CSS">
+  <img src="/Header photo 1 opt.jpg" alt="header photo" width="500px">
+</head>
+<body>
+    <header>
+        <nav>
+            
+        </nav>
+    </header>
+  <h1>To-Do List</h1>
+  
+  <form>
+    <label for="new-task">Add Item:</label>
+    <input type="text" id="new-task" name="new-task">
+    <button type="submit">Add</button>
+  </form>
+  
+  <ul id="task-list">
+    <li>Feed the baby</li>
+    <li>run 5km</li>
+    <li>Meet the banker</li>
+    <li>Play date</li>
+    <li>make baby lunch</li>
+    <li>zoom meeting with funders</li>
+  </ul>
+  
+  <script>
+    // JavaScript code for adding new tasks to the list goes here
+    // Select the form and the task list
+const form = document.querySelector('form');
+const taskList = document.querySelector('#task-list');
+
+// Handle form submission
+form.addEventListener('submit', (e) => {
+  e.preventDefault(); // Prevent form from reloading the page
+
+  // Get the new task input value and create a new list item
+  const newTaskInput = document.querySelector('#new-task');
+  const newTask = document.createElement('li');
+  const newTaskText = document.createTextNode(newTaskInput.value);
+
+  // Add the new task text to the list item
+  newTask.appendChild(newTaskText);
+
+  // Add the list item to the task list
+  taskList.appendChild(newTask);
+
+  // Clear the new task input value
+  newTaskInput.value = '';
+});
+
+// Handle clicks on list items
+taskList.addEventListener('click', (e) => {
+  const listItem = e.target.closest('li');
+
+  // If the click was on the delete button, remove the list item
+  if (e.target.matches('.delete')) {
+    listItem.remove();
+  }
+
+  // If the click was on the list item text, toggle the completed class
+  if (e.target.matches('li')) {
+    listItem.classList.toggle('completed');
+  }
+});
+  </script>
+</body>
+</html>
